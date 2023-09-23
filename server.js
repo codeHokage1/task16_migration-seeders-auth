@@ -4,6 +4,8 @@ const itemsRoutes = require("./routes/itemsRoutes");
 const ordersRoutes = require("./routes/ordersRoutes");
 const userRoutes = require("./routes/userRoutes");
 
+const connectDB = require("./config/dbConfig");
+
 require("dotenv").config();
 
 const app = express();
@@ -27,6 +29,8 @@ app.get("*", (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000; 
+
+connectDB();
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
