@@ -34,7 +34,7 @@ const Item = sequelize.define("Item", {
 		defaultValue: true
 	},
 	category_id: {
-		type: DataTypes.UUID,
+		type: DataTypes.STRING,
 		allowNull: false
 	}
 });

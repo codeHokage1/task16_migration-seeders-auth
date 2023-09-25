@@ -20,7 +20,7 @@ exports.validateAccess = async (req, res, next) => {
 		}
 		const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
-		const foundUser = await User.find({ _id: decoded.id, email: decoded.email });
+		const foundUser = await User.findOne({ where: { _id: decoded._id, email: decoded.email } });
 		if (!foundUser) {
 			return res.status(404).json({
 				message: "Unauthorized to access this route. Invalid token",

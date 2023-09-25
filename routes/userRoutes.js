@@ -6,7 +6,8 @@ const validateRequest = require("../middlewares/validatRequest");
 
 router
     .get('/', usersControllers.getAllUsers)
-    .post('/', validateRequest.checkNewUser, usersControllers.createUser)
+    .post('/signup', validateRequest.checkNewUser, usersControllers.createUser)
+    .post('/login', validateRequest.checkLogin, usersControllers.loginUser)
 
 
 module.exports = router;
