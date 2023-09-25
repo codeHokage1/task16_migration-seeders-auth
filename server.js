@@ -36,7 +36,7 @@ sequelizeDB
 		console.log("Database connected!");
 	})
 	.catch((err) => {
-		console.log("Error: " + err);
+		console.log("Error: " + err.message);
 	});
 app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}`);

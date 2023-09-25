@@ -1,4 +1,5 @@
 const User = require("../models/user.js");
+const bcrypt = require("bcrypt");
 
 exports.getAllUsers = async (req, res) => {
     const users = await User.findAll();
@@ -10,6 +11,7 @@ exports.getAllUsers = async (req, res) => {
 
 exports.createUser = async (req, res) => {
     const userDetails = req.body;
+    userDetails.password = await bcrypt.hash(userDetails.password, 10);
     try {
         const newUser = await User.create(userDetails);
         res.status(201).json({
