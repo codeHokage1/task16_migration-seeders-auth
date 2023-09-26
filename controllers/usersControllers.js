@@ -16,7 +16,7 @@ exports.createUser = async (req, res) => {
 
 	try {
 		const newUser = await User.create(userDetails);
-		const token = jwt.sign({ id: newUser._id, email: newUser.email }, process.env.JWT_SECRET, {
+		const token = jwt.sign({ id: newUser._id, email: newUser.email }, process.env.SECRET_KEY, {
 			expiresIn: "1h"
 		});
 
@@ -49,7 +49,9 @@ exports.loginUser = async (req, res) => {
 		});
 	}
 
-	const token = jwt.sign({ id: foundUser._id, email: foundUser.email }, process.env.SECRET_KEY);
+	const token = jwt.sign({ id: foundUser._id, email: foundUser.email }, process.env.SECRET_KEY, {
+		expiresIn: "1h"
+	});
 	return res.json({
 		message: "Login Successful!",
 		data: foundUser,

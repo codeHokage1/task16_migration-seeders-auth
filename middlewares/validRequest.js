@@ -31,3 +31,40 @@ exports.checkLogin = async (req, res, next) => {
 	}
 	next();
 };
+
+exports.checkNewCategory = async (req, res, next) => {
+	const schema = joi.object({
+		name: joi.string().required(),
+		description: joi.string().required()
+	});
+
+	try {
+		const value = await schema.validateAsync(req.body);
+	} catch (error) {
+		return res.status(422).json({
+			message: error.details[0].message,
+			data: null
+		});
+	}
+	next();
+};
+
+exports.checkNewItem = async (req, res, next) => {
+	const schema = joi.object({
+		name: joi.string().required(),
+		description: joi.string().required(),
+		price: joi.number().required(),
+		categoryId: joi.string().required(),
+		size: joi.string().valid("small", "medium", "large", "n/a").required(),
+	});
+
+	try {
+		const value = await schema.validateAsync(req.body);
+	} catch (error) {
+		return res.status(422).json({
+			message: error.details[0].message,
+			data: null
+		});
+	}
+	next();
+};

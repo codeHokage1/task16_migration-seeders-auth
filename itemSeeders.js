@@ -1,10 +1,10 @@
 const connectDB = require("./config/dbConfig");
-const User = require("./models/User");
 const brcypt = require("bcrypt");
+const Item = require("./models/Item");
 
 connectDB()
 	.then(async () => {
-		await User.insertMany([
+		await Item.insertMany([
 			{
 				name: "Lebron XX",
 				description: "Latest Lebron James shoe",

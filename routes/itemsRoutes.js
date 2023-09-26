@@ -9,7 +9,7 @@ router.use(auth.validateAccess);
 
 router
     .get("/", itemControllers.getAllItems)
-    .post("/", itemControllers.createItem)
+    .post("/", validRequest.checkNewItem, itemControllers.createItem)
     .put("/:id", itemControllers.updateItem)
     .delete("/:id", itemControllers.deleteItem);
 
